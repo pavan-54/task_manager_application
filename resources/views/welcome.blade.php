@@ -20,12 +20,33 @@
             <tr>
                 <th>Task Id</th>
                 <th>Task Name</th>
+                <th>Task Desciption</th>
                 <th>Task Due Date</th>
-                <th>Task Remarks</th>
                 <th>Task Action</th>
             </tr>
           </thead>
           <tbody>
+            @php
+                $tasks = DB::table('tasks')->get();
+            @endphp
+
+            @foreach ($tasks  as $task)
+
+            <tr>
+                <td>{{ $task->id }}</td>
+                <td>{{ $task->task_name }}</td>
+                <td>{{ $task->task_description }}</td>
+                <td>{{ $task->due_date }}</td>
+                <td>
+                    <select name="task_options" id="task_options">
+                        <option value="">--</option>
+                        <option value="edit">Edit Task</option>
+                        <option value="delete">Delete Task</option>
+                    </select>
+                </td>
+            </tr>
+                
+            @endforeach
 
           </tbody>
         </table>
