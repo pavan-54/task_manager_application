@@ -28,4 +28,27 @@ class TaskController extends Controller
 
         return back()->with('success','Task added Sucessfully');
     }
+    public function mark_complete(Request $request,$id)
+    {
+        $task = new Task;
+
+       
+
+        $task->whereId($id)->update([
+            "completed_on"=>today()
+        ]);
+        
+        return redirect()->back()->with('success',"Task Marked as Complete");
+    }
+
+    public function mark_un_complete(Request $request,$id)
+    {
+        $task = new Task;
+
+        $task->whereId($id)->update([
+            "completed_on"=>null
+        ]);
+        
+        return redirect()->back()->with('success',"Marked Un Complete");
+    }
 }

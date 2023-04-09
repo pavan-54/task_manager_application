@@ -30,7 +30,7 @@
           </thead>
           <tbody>
             @php
-                $tasks = DB::table('tasks')->where('completed_on',null)->get();
+                $tasks = DB::table('tasks')->where('completed_on',"!=",null)->get();
             @endphp
 
             @foreach ($tasks  as $task)
@@ -48,9 +48,9 @@
                     </select>
                 </td>
                 <td>
-                  <form action="/task/mark_complete/{{ $task->id }}" method="post">
+                  <form action="/task/mark_un_complete/{{ $task->id }}" method="post">
                     @csrf
-                    <input class="btn bg-success" type="submit" value="Mark Task As Complete">
+                    <input class="btn bg-danger" type="submit" value="Mark Un Complete">
                   </form>
                 </td>
             </tr>
